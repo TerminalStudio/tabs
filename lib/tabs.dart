@@ -1,7 +1,8 @@
 library tabs;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/tab.dart';
+export 'src/tabs_view.dart';
+
+export 'src/layout/tabs_layout.dart';
+export 'src/layout/tabs_group.dart';
+export 'src/layout/tabs_group_action.dart';
