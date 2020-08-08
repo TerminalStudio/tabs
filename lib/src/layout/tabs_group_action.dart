@@ -18,7 +18,7 @@ class TabsGroupAction extends StatelessWidget {
         child: Container(
           child: Icon(
             icon,
-            color: Color(0xFF7F7F7F),
+            color: Color(0xFF8B8B8B),
           ),
         ),
       ),

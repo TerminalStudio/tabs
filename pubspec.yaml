@@ -1,8 +1,7 @@
 name: tabs
-description: A new Flutter package project.
+description: Flexible window library built for TerminalStudio.
 version: 0.0.1
-author:
-homepage: https
+homepage: https://github.com/TerminalStudio/tabs
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
