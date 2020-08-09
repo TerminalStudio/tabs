@@ -15,10 +15,10 @@ class TabGroupController with ChangeNotifier {
 
   int get length => tabs.length;
 
-  void addTab(Tab tab, {bool focus = false}) {
+  void addTab(Tab tab, {bool activate = false}) {
     _tabs.add(tab);
 
-    if (_activeTabIndex == null || focus) {
+    if (_activeTabIndex == null || activate) {
       _activeTabIndex = _tabs.length - 1;
     }
 
@@ -162,7 +162,7 @@ class TabsGroupState extends State<TabsGroup> {
     const tabBarHeight = 32.0;
 
     const borderColor = Color(0xFF4A4A4C);
-    const borderWidth = 2.0;
+    const borderWidth = 1.0;
     const div = VerticalDivider(
       color: borderColor,
       width: borderWidth,
@@ -185,8 +185,11 @@ class TabsGroupState extends State<TabsGroup> {
             lastConstraints = constraints;
             return DragTarget<Tab>(
               builder: (context, _, __) => GestureDetector(
-                onTap: () => widget.controller.setActiveTab(i),
                 child: tab.build(isActive, isAccepting),
+                onTap: () {
+                  widget.controller.setActiveTab(i);
+                  tab.onActivate?.call();
+                },
               ),
               onAcceptWithDetails: (details) {
                 isAccepting = false;
@@ -221,16 +224,17 @@ class TabsGroupState extends State<TabsGroup> {
           onDragEnd: (detail) {
             if (detail.wasAccepted) {
               widget.controller?.removeTab(tab);
+              tab.onDrop?.call();
             }
           },
         ),
       );
 
-      children.add(div);
       children.add(child);
+      children.add(div);
     }
 
-    children.add(div);
+    // children.add(div);
 
     final tabRow = CloseListener(
       onClose: (tab) {
@@ -255,8 +259,8 @@ class TabsGroupState extends State<TabsGroup> {
       ),
       decoration: BoxDecoration(
         color: backgroundColor,
-        border: Border.symmetric(
-          horizontal: BorderSide(color: borderColor, width: borderWidth),
+        border: Border(
+          top: BorderSide(color: borderColor, width: borderWidth),
         ),
       ),
     );

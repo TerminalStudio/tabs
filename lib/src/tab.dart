@@ -21,11 +21,21 @@ class TabController with ChangeNotifier {
 }
 
 class Tab {
-  Tab({this.title, this.controller, this.content});
+  Tab({
+    this.title,
+    this.controller,
+    this.content,
+    this.onClose,
+    this.onActivate,
+    this.onDrop,
+  });
 
   final TabController controller;
   final String title;
   final Widget content;
+  final void Function() onClose;
+  final void Function() onActivate;
+  final void Function() onDrop;
 
   Widget build(bool isActive, [bool isAccepting = false]) {
     return TabWidget(
@@ -40,6 +50,9 @@ class Tab {
       title: title,
       controller: controller,
       content: content,
+      onClose: onClose,
+      onActivate: onActivate,
+      onDrop: onDrop,
     );
   }
 }
@@ -142,6 +155,7 @@ class _TabWidgetState extends State<TabWidget> {
               child: _CloseButton(
                 onClick: () {
                   CloseListener.of(context).close(widget.tab);
+                  widget.tab.onClose?.call();
                 },
               ),
             ),

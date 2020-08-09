@@ -27,10 +27,9 @@ class TabAcceptRegion extends StatelessWidget {
                 top: 32,
                 onAccept: (tab) {
                   final controller = TabGroupController();
+                  controller.addTab(tab);
                   final group = TabsGroup(controller: controller);
                   onReplace(TabColumn(top: group, bottom: original));
-                  // tab.controller?.requestClose();
-                  controller.addTab(tab);
                 },
               ),
             ),
@@ -41,10 +40,9 @@ class TabAcceptRegion extends StatelessWidget {
               child: TabAcceptArea(
                 onAccept: (tab) {
                   final controller = TabGroupController();
+                  controller.addTab(tab);
                   final group = TabsGroup(controller: controller);
                   onReplace(TabColumn(top: original, bottom: group));
-                  // tab.controller?.requestClose();
-                  controller.addTab(tab);
                 },
               ),
             ),
@@ -57,10 +55,9 @@ class TabAcceptRegion extends StatelessWidget {
                 left: constrains.maxWidth * 0.2,
                 onAccept: (tab) {
                   final controller = TabGroupController();
+                  controller.addTab(tab);
                   final group = TabsGroup(controller: controller);
                   onReplace(TabRow(left: original, right: group));
-                  // tab.controller?.requestClose();
-                  controller.addTab(tab);
                 },
               ),
             ),
@@ -73,9 +70,9 @@ class TabAcceptRegion extends StatelessWidget {
                 right: constrains.maxWidth * 0.2,
                 onAccept: (tab) {
                   final controller = TabGroupController();
+                  controller.addTab(tab);
                   final group = TabsGroup(controller: controller);
                   onReplace(TabRow(left: group, right: original));
-                  controller.addTab(tab);
                 },
               ),
             ),

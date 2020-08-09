@@ -16,9 +16,11 @@ class TabsGroupAction extends StatelessWidget {
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: Container(
+          padding: EdgeInsets.only(bottom: 2),
           child: Icon(
             icon,
-            color: Color(0xFF7F7F7F),
+            size: 30,
+            color: Color(0xFF9F9F9F),
           ),
         ),
       ),

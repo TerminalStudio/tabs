@@ -54,14 +54,14 @@ class _MyHomePageState extends State<MyHomePage> {
             TabsGroupAction(
               icon: CupertinoIcons.add,
               onTap: (group) {
-                group.addTab(buildTab(), focus: true);
+                group.addTab(buildTab(), activate: true);
               },
             )
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(onPressed: () {
-        group.addTab(buildTab(), focus: true);
+        group.addTab(buildTab(), activate: true);
       }),
     );
   }
