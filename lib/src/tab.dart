@@ -12,11 +12,15 @@ class TabController with ChangeNotifier {
 
   String get title => _title;
 
-  final closeRequest = ChangeNotifier();
-
   void setTitle(String title) {
     _title = title;
     notifyListeners();
+  }
+
+  final closeRequest = ChangeNotifier();
+
+  void requestClose() {
+    closeRequest.notifyListeners();
   }
 }
 
@@ -90,6 +94,7 @@ class _TabWidgetState extends State<TabWidget> {
   void initState() {
     title = widget.tab.controller?.title ?? widget.tab.title ?? title;
     widget.tab.controller?.addListener(onChange);
+    widget.tab.controller.closeRequest?.addListener(close);
     super.initState();
   }
 
@@ -97,14 +102,22 @@ class _TabWidgetState extends State<TabWidget> {
   void didUpdateWidget(TabWidget oldWidget) {
     title = widget.tab.controller?.title ?? widget.tab.title ?? title;
     oldWidget.tab.controller?.removeListener(onChange);
+    oldWidget.tab.controller.closeRequest?.removeListener(close);
     widget.tab.controller?.addListener(onChange);
+    widget.tab.controller.closeRequest?.addListener(close);
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
     widget.tab.controller?.removeListener(onChange);
+    widget.tab.controller.closeRequest?.removeListener(close);
     super.dispose();
+  }
+
+  void close() {
+    CloseListener.of(context).close(widget.tab);
+    widget.tab.onClose?.call();
   }
 
   @override
@@ -152,12 +165,7 @@ class _TabWidgetState extends State<TabWidget> {
           children: [
             Invisible(
               visible: hover || widget.isActive,
-              child: _CloseButton(
-                onClick: () {
-                  CloseListener.of(context).close(widget.tab);
-                  widget.tab.onClose?.call();
-                },
-              ),
+              child: _CloseButton(onClick: close),
             ),
             Expanded(
               child: content,

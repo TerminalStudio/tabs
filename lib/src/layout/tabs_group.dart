@@ -19,7 +19,7 @@ class TabGroupController with ChangeNotifier {
     _tabs.add(tab);
 
     if (_activeTabIndex == null || activate) {
-      _activeTabIndex = _tabs.length - 1;
+      setActiveTab(_tabs.length - 1);
     }
 
     notifyListeners();
@@ -29,7 +29,7 @@ class TabGroupController with ChangeNotifier {
     _tabs.insert(index, tab);
 
     if (_activeTabIndex == null || focus) {
-      _activeTabIndex = _tabs.length - 1;
+      setActiveTab(_tabs.length - 1);
     }
 
     notifyListeners();
@@ -45,6 +45,8 @@ class TabGroupController with ChangeNotifier {
     }
 
     _activeTabIndex = index;
+
+    tabs[index].onActivate?.call();
 
     notifyListeners();
   }
@@ -67,7 +69,7 @@ class TabGroupController with ChangeNotifier {
     if (_tabs.isEmpty) {
       _activeTabIndex = null;
     } else {
-      _activeTabIndex = _activeTabIndex.clamp(0, _tabs.length - 1);
+      setActiveTab(_activeTabIndex.clamp(0, _tabs.length - 1));
     }
 
     notifyListeners();
@@ -131,6 +133,13 @@ class TabsGroupState extends State<TabsGroup> {
   }
 
   @override
+  void didUpdateWidget(TabsGroup oldWidget) {
+    oldWidget.controller.removeListener(onChange);
+    widget.controller.addListener(onChange);
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   void dispose() {
     widget.controller.removeListener(onChange);
     super.dispose();
@@ -188,7 +197,6 @@ class TabsGroupState extends State<TabsGroup> {
                 child: tab.build(isActive, isAccepting),
                 onTap: () {
                   widget.controller.setActiveTab(i);
-                  tab.onActivate?.call();
                 },
               ),
               onAcceptWithDetails: (details) {
