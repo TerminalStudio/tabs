@@ -4,7 +4,8 @@ import 'package:flutter/material.dart' show Colors;
 import 'package:tabs/src/util/divider.dart';
 
 // const _kColor = Color(0xFF3A3D3F);
-const _kColor = Color(0xFF1D1D1D);
+// const _kColor = Color(0xFF1D1D1D);
+const _kColor = Color(0xFF2D2D2D);
 const _kActiveColor = Color(0xFF3A3D3F);
 
 class HorizontalDragBar extends StatelessWidget {
@@ -15,7 +16,7 @@ class HorizontalDragBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      cursor: SystemMouseCursors.click,
+      cursor: SystemMouseCursors.resizeRow,
       child: HorizontalDivider(
         height: 8,
         color: isDragging ? _kActiveColor : _kColor,
@@ -36,7 +37,7 @@ class VerticalDragBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      cursor: SystemMouseCursors.click,
+      cursor: SystemMouseCursors.resizeColumn,
       child: VerticalDivider(
         width: 8,
         color: isDragging ? _kActiveColor : _kColor,
