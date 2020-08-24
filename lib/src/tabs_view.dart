@@ -49,7 +49,17 @@ class _TabsViewState extends State<TabsView> {
   @override
   Widget build(BuildContext context) {
     if (widget.controller?.root == null) {
-      return Container();
+      return DragTarget<Tab>(
+        onAcceptWithDetails: (details) {
+          final tabs = TabGroupController();
+          tabs.addTab(details.data);
+          final layout = TabsGroup(controller: tabs);
+          widget.controller.replaceRoot(layout);
+        },
+        builder: (context, _, __) {
+          return Container();
+        },
+      );
     }
 
     return TabsGroupActions(
