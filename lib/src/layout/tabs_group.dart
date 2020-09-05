@@ -288,7 +288,45 @@ class TabsGroupState extends State<TabsGroup> {
 
   Widget _buildContent(BuildContext context) {
     final activeTab = widget.controller?.getActiveTab();
-    final content = activeTab?.content ?? Container();
-    return content;
+    return TabContent(activeTab.controller);
+  }
+}
+
+class TabContent extends StatefulWidget {
+  TabContent(this.tab);
+
+  final TabController tab;
+
+  @override
+  _TabContentState createState() => _TabContentState();
+}
+
+class _TabContentState extends State<TabContent> {
+  void onChange() {
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    widget.tab.addListener(onChange);
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant TabContent oldWidget) {
+    oldWidget.tab.removeListener(onChange);
+    widget.tab.addListener(onChange);
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    widget.tab.removeListener(onChange);
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return widget.tab.content ?? Container();
   }
 }

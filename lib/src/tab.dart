@@ -8,7 +8,13 @@ import 'package:tabs/src/layout/close_listener.dart';
 import 'package:tabs/src/util/invisible.dart';
 
 class TabController with ChangeNotifier {
+  TabController();
+
+  TabController._(this._title, this._content);
+
   String _title;
+
+  Widget _content;
 
   String get title => _title;
 
@@ -17,10 +23,21 @@ class TabController with ChangeNotifier {
     notifyListeners();
   }
 
+  Widget get content => _content;
+
+  void setContent(Widget content) {
+    _content = content;
+    notifyListeners();
+  }
+
   final closeRequest = ChangeNotifier();
 
   void requestClose() {
     closeRequest.notifyListeners();
+  }
+
+  TabController copy() {
+    return TabController._(this._title, this._content);
   }
 }
 
@@ -28,7 +45,6 @@ class Tab {
   Tab({
     this.title,
     this.controller,
-    this.content,
     this.onClose,
     this.onActivate,
     this.onDrop,
@@ -36,7 +52,6 @@ class Tab {
 
   final TabController controller;
   final String title;
-  final Widget content;
   final void Function() onClose;
   final void Function() onActivate;
   final void Function() onDrop;
@@ -52,8 +67,7 @@ class Tab {
   Tab copy() {
     return Tab(
       title: title,
-      controller: controller,
-      content: content,
+      controller: controller.copy(),
       onClose: onClose,
       onActivate: onActivate,
       onDrop: onDrop,
@@ -154,8 +168,14 @@ class _TabWidgetState extends State<TabWidget> {
     );
 
     return MouseRegion(
-      onEnter: (_) => setState(() => hover = true),
-      onExit: (_) => setState(() => hover = false),
+      onEnter: (_) {
+        if (!mounted) return;
+        setState(() => hover = true);
+      },
+      onExit: (_) {
+        if (!mounted) return;
+        setState(() => hover = false);
+      },
       child: Container(
         height: double.infinity,
         decoration: decoration,

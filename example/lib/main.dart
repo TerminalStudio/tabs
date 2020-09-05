@@ -68,13 +68,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Tab buildTab() {
     count++;
+
     final tab = TabController();
+
+    tab.setContent(
+      Center(
+        child: Text('Window $count'),
+      ),
+    );
+
     return Tab(
       controller: tab,
       title: 'Window $count',
-      content: Center(
-        child: Text('Window $count'),
-      ),
     );
   }
 }
