@@ -8,7 +8,7 @@ import 'package:tabs/src/layout/close_listener.dart';
 import 'package:tabs/src/util/invisible.dart';
 
 class TabController with ChangeNotifier {
-  String _title;
+  String _title = '';
 
   String get title => _title;
 
@@ -28,18 +28,18 @@ class Tab {
   Tab({
     this.title,
     this.controller,
-    this.content,
+    required this.content,
     this.onClose,
     this.onActivate,
     this.onDrop,
   });
 
-  final TabController controller;
-  final String title;
+  final TabController? controller;
+  final String? title;
   final Widget content;
-  final void Function() onClose;
-  final void Function() onActivate;
-  final void Function() onDrop;
+  final void Function()? onClose;
+  final void Function()? onActivate;
+  final void Function()? onDrop;
 
   Widget build(bool isActive, [bool isAccepting = false]) {
     return TabWidget(
@@ -65,9 +65,9 @@ const _kInactiveTextColor = Color(0xFF8B8B8B);
 
 class TabWidget extends StatefulWidget {
   TabWidget({
-    this.tab,
-    this.isActive,
-    this.isAccepting,
+    required this.tab,
+    required this.isActive,
+    required this.isAccepting,
   });
 
   final Tab tab;
@@ -85,7 +85,7 @@ class _TabWidgetState extends State<TabWidget> {
   void onChange() {
     if (widget.tab.controller?.title != null) {
       setState(() {
-        title = widget.tab.controller.title;
+        title = widget.tab.controller!.title;
       });
     }
   }
@@ -94,7 +94,7 @@ class _TabWidgetState extends State<TabWidget> {
   void initState() {
     title = widget.tab.controller?.title ?? widget.tab.title ?? title;
     widget.tab.controller?.addListener(onChange);
-    widget.tab.controller.closeRequest?.addListener(close);
+    widget.tab.controller?.closeRequest.addListener(close);
     super.initState();
   }
 
@@ -102,16 +102,16 @@ class _TabWidgetState extends State<TabWidget> {
   void didUpdateWidget(TabWidget oldWidget) {
     title = widget.tab.controller?.title ?? widget.tab.title ?? title;
     oldWidget.tab.controller?.removeListener(onChange);
-    oldWidget.tab.controller.closeRequest?.removeListener(close);
+    oldWidget.tab.controller?.closeRequest.removeListener(close);
     widget.tab.controller?.addListener(onChange);
-    widget.tab.controller.closeRequest?.addListener(close);
+    widget.tab.controller?.closeRequest.addListener(close);
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
     widget.tab.controller?.removeListener(onChange);
-    widget.tab.controller.closeRequest?.removeListener(close);
+    widget.tab.controller?.closeRequest.removeListener(close);
     super.dispose();
   }
 
@@ -178,7 +178,7 @@ class _TabWidgetState extends State<TabWidget> {
 }
 
 class _CloseButton extends StatelessWidget {
-  _CloseButton({this.onClick});
+  _CloseButton({required this.onClick});
 
   final void Function() onClick;
 

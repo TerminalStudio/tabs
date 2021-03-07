@@ -6,8 +6,8 @@ import 'package:tabs/src/util/extension.dart';
 
 class TabRow extends StatefulWidget implements TabsLayout {
   TabRow({
-    this.left,
-    this.right,
+    required this.left,
+    required this.right,
     this.minWidth = 100,
   });
 
@@ -33,7 +33,7 @@ class _TabRowState extends State<TabRow> {
 
   var isDragging = false;
 
-  void onReplaceLeft(TabsLayout replacement) {
+  void onReplaceLeft(TabsLayout? replacement) {
     if (replacement == null) {
       ReplaceListener.of(context).requestReplace(widget.right);
     } else {
@@ -44,7 +44,7 @@ class _TabRowState extends State<TabRow> {
     }
   }
 
-  void onReplaceRight(TabsLayout replacement) {
+  void onReplaceRight(TabsLayout? replacement) {
     if (replacement == null) {
       ReplaceListener.of(context).requestReplace(widget.left);
     } else {
@@ -77,9 +77,9 @@ class _TabRowState extends State<TabRow> {
             },
             onVerticalDragUpdate: (details) {
               final flexLeft =
-                  details.globalPosition.dx - keyLeft.globalPaintBounds.left;
+                  details.globalPosition.dx - keyLeft.globalPaintBounds!.left;
               final flexRight =
-                  keyRight.globalPaintBounds.right - details.globalPosition.dx;
+                  keyRight.globalPaintBounds!.right - details.globalPosition.dx;
 
               if (flexLeft < widget.minWidth || flexRight < widget.minWidth) {
                 return;

@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 class VerticalDivider extends StatelessWidget {
   const VerticalDivider({
-    Key key,
+    Key? key,
     this.width,
-    this.color,
+    required this.color,
     this.border,
   })  : assert(width == null || width >= 0.0),
         super(key: key);
 
-  final double width;
+  final double? width;
   final Color color;
-  final BorderSide border;
+  final BorderSide? border;
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +36,16 @@ class VerticalDivider extends StatelessWidget {
 
 class HorizontalDivider extends StatelessWidget {
   const HorizontalDivider({
-    Key key,
+    Key? key,
     this.height,
-    this.color,
+    required this.color,
     this.border,
   })  : assert(height == null || height >= 0.0),
         super(key: key);
 
-  final double height;
+  final double? height;
   final Color color;
-  final BorderSide border;
+  final BorderSide? border;
 
   @override
   Widget build(BuildContext context) {

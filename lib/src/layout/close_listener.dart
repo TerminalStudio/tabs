@@ -3,9 +3,9 @@ import 'package:tabs/src/tab.dart';
 
 class CloseListener extends InheritedWidget {
   CloseListener({
-    Key key,
-    @required this.child,
-    @required this.onClose,
+    Key? key,
+    required this.child,
+    required this.onClose,
   }) : super(key: key, child: child);
 
   @override
@@ -14,7 +14,7 @@ class CloseListener extends InheritedWidget {
   final void Function(Tab) onClose;
 
   static CloseListener of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<CloseListener>());
+    return context.dependOnInheritedWidgetOfExactType<CloseListener>()!;
   }
 
   void close(Tab tab) {

@@ -6,7 +6,11 @@ import 'package:tabs/src/layout/tabs_layout.dart';
 import 'package:tabs/src/tab.dart';
 
 class TabAcceptRegion extends StatelessWidget {
-  TabAcceptRegion({this.child, this.original, this.onReplace});
+  TabAcceptRegion({
+    required this.child,
+    required this.original,
+    required this.onReplace,
+  });
 
   final Widget child;
   final TabsLayout original;
@@ -85,8 +89,8 @@ class TabAcceptRegion extends StatelessWidget {
 
 class TabAcceptArea extends StatefulWidget {
   const TabAcceptArea({
-    Key key,
-    this.onAccept,
+    Key? key,
+    required this.onAccept,
     this.left,
     this.right,
     this.top,
@@ -94,10 +98,10 @@ class TabAcceptArea extends StatefulWidget {
   }) : super(key: key);
 
   final void Function(Tab) onAccept;
-  final double left;
-  final double right;
-  final double top;
-  final double bottom;
+  final double? left;
+  final double? right;
+  final double? top;
+  final double? bottom;
 
   @override
   _TabAcceptAreaState createState() => _TabAcceptAreaState();

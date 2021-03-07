@@ -6,8 +6,8 @@ import 'package:tabs/src/util/extension.dart';
 
 class TabColumn extends StatefulWidget implements TabsLayout {
   TabColumn({
-    this.top,
-    this.bottom,
+    required this.top,
+    required this.bottom,
     this.minHeight = 100,
   });
 
@@ -33,7 +33,7 @@ class _TabColumnState extends State<TabColumn> {
 
   var isDragging = false;
 
-  void onReplaceTop(TabsLayout replacement) {
+  void onReplaceTop(TabsLayout? replacement) {
     if (replacement == null) {
       ReplaceListener.of(context).requestReplace(widget.bottom);
     } else {
@@ -44,7 +44,7 @@ class _TabColumnState extends State<TabColumn> {
     }
   }
 
-  void onReplaceBottom(TabsLayout replacement) {
+  void onReplaceBottom(TabsLayout? replacement) {
     if (replacement == null) {
       ReplaceListener.of(context).requestReplace(widget.top);
     } else {
@@ -77,9 +77,9 @@ class _TabColumnState extends State<TabColumn> {
           onHorizontalDragUpdate: (details) {
 
             final flexTop =
-                details.globalPosition.dy - keyTop.globalPaintBounds.top;
+                details.globalPosition.dy - keyTop.globalPaintBounds!.top;
             final flexBottom =
-                keyBottom.globalPaintBounds.bottom - details.globalPosition.dy;
+                keyBottom.globalPaintBounds!.bottom - details.globalPosition.dy;
 
             if (flexTop < widget.minHeight || flexBottom < widget.minHeight) {
               return;

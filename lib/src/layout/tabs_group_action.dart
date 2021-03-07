@@ -3,7 +3,10 @@ import 'package:flutter/widgets.dart';
 import 'package:tabs/src/layout/tabs_group.dart';
 
 class TabsGroupAction extends StatelessWidget {
-  TabsGroupAction({this.icon, this.onTap});
+  TabsGroupAction({
+    required this.icon,
+    required this.onTap,
+  });
 
   final IconData icon;
   final void Function(TabGroupController) onTap;
@@ -30,8 +33,8 @@ class TabsGroupAction extends StatelessWidget {
 
 class TabsGroupActions extends InheritedWidget {
   TabsGroupActions({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
     this.actions = const [],
   }) : super(key: key, child: child);
 
@@ -41,7 +44,7 @@ class TabsGroupActions extends InheritedWidget {
   final List<TabsGroupAction> actions;
 
   static TabsGroupActions of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<TabsGroupActions>());
+    return context.dependOnInheritedWidgetOfExactType<TabsGroupActions>()!;
   }
 
   @override

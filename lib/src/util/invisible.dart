@@ -2,9 +2,9 @@ import 'package:flutter/widgets.dart';
 
 class Invisible extends StatelessWidget {
   const Invisible({
-    Key key,
-    this.child,
-    this.visible,
+    Key? key,
+    required this.child,
+    required this.visible,
   }) : super(key: key);
 
   final bool visible;

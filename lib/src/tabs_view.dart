@@ -4,10 +4,10 @@ import 'package:tabs/src/layout/tabs_layout.dart';
 import 'package:tabs/tabs.dart';
 
 class TabsController with ChangeNotifier {
-  TabsLayout _root;
-  TabsLayout get root => _root;
+  TabsLayout? _root;
+  TabsLayout? get root => _root;
 
-  void replaceRoot(TabsLayout layout) {
+  void replaceRoot(TabsLayout? layout) {
     _root = layout;
 
     notifyListeners();
@@ -18,7 +18,7 @@ class TabsController with ChangeNotifier {
 
 class TabsView extends StatefulWidget {
   TabsView({
-    TabsController controller,
+    TabsController? controller,
     this.actions = const [],
   }) : controller = controller ?? TabsController();
 
@@ -36,28 +36,28 @@ class _TabsViewState extends State<TabsView> {
 
   @override
   void initState() {
-    widget.controller?.addListener(onChange);
+    widget.controller.addListener(onChange);
     super.initState();
   }
 
   @override
   void dispose() {
-    widget.controller?.removeListener(onChange);
+    widget.controller.removeListener(onChange);
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.controller?.root == null) {
+    if (widget.controller.root == null) {
       return Container();
     }
 
     return TabsGroupActions(
       actions: widget.actions,
       child: ReplaceListener(
-        child: widget.controller?.root,
+        child: widget.controller.root!,
         onReplace: (layout) {
-          widget.controller?.replaceRoot(layout);
+          widget.controller.replaceRoot(layout);
         },
       ),
     );
