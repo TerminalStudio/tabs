@@ -22,6 +22,9 @@ class TabRow extends StatefulWidget implements TabsLayout {
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'TabRow($left, $right)';
   }
+
+  @override
+  int get tabCount => left.tabCount + right.tabCount;
 }
 
 class _TabRowState extends State<TabRow> {

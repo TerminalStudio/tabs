@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart' hide Tab;
 import 'package:tabs/src/layout/tabs_column.dart';
-import 'package:tabs/src/layout/tabs_row.dart';
 import 'package:tabs/src/layout/tabs_group.dart';
 import 'package:tabs/src/layout/tabs_layout.dart';
+import 'package:tabs/src/layout/tabs_row.dart';
 import 'package:tabs/src/tab.dart';
+
+import '../../tabs.dart';
 
 class TabAcceptRegion extends StatelessWidget {
   TabAcceptRegion({
     required this.child,
     required this.original,
     required this.onReplace,
+    required this.mainController,
   });
 
   final Widget child;
   final TabsLayout original;
   final void Function(TabsLayout) onReplace;
+  final TabsController mainController;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +34,7 @@ class TabAcceptRegion extends StatelessWidget {
               child: TabAcceptArea(
                 top: 32,
                 onAccept: (tab) {
-                  final controller = TabGroupController();
+                  final controller = TabGroupController(mainController);
                   controller.addTab(tab);
                   final group = TabsGroup(controller: controller);
                   onReplace(TabColumn(top: group, bottom: original));
@@ -43,7 +47,7 @@ class TabAcceptRegion extends StatelessWidget {
               height: constrains.maxHeight * 0.5,
               child: TabAcceptArea(
                 onAccept: (tab) {
-                  final controller = TabGroupController();
+                  final controller = TabGroupController(mainController);
                   controller.addTab(tab);
                   final group = TabsGroup(controller: controller);
                   onReplace(TabColumn(top: original, bottom: group));
@@ -58,7 +62,7 @@ class TabAcceptRegion extends StatelessWidget {
                 top: 32,
                 left: constrains.maxWidth * 0.2,
                 onAccept: (tab) {
-                  final controller = TabGroupController();
+                  final controller = TabGroupController(mainController);
                   controller.addTab(tab);
                   final group = TabsGroup(controller: controller);
                   onReplace(TabRow(left: original, right: group));
@@ -73,7 +77,7 @@ class TabAcceptRegion extends StatelessWidget {
                 top: 32,
                 right: constrains.maxWidth * 0.2,
                 onAccept: (tab) {
-                  final controller = TabGroupController();
+                  final controller = TabGroupController(mainController);
                   controller.addTab(tab);
                   final group = TabsGroup(controller: controller);
                   onReplace(TabRow(left: group, right: original));
@@ -132,9 +136,7 @@ class _TabAcceptAreaState extends State<TabAcceptArea> {
               if (mounted) {
                 setState(() => isAccepting = false);
               }
-              if (widget.onAccept != null) {
-                widget.onAccept(val);
-              }
+              widget.onAccept(val);
             },
             onWillAccept: (val) {
               if (mounted) {

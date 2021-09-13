@@ -5,12 +5,17 @@ import 'package:tabs/src/layout/tabs_accept_region.dart';
 import 'package:tabs/src/layout/tabs_group_action.dart';
 import 'package:tabs/src/layout/tabs_layout.dart';
 import 'package:tabs/src/tab.dart';
+import 'package:tabs/src/tabs_view.dart';
 import 'package:tabs/src/util/divider.dart';
 
 class TabGroupController with ChangeNotifier {
+  TabGroupController(this.mainController);
   var _tabs = <Tab>[];
+  final TabsController mainController;
 
   List<Tab> get tabs => _tabs;
+
+  bool get allowDrag => mainController.tabCount > 1;
 
   int get length => tabs.length;
 
@@ -118,6 +123,9 @@ class TabsGroup extends StatefulWidget implements TabsLayout {
 
   @override
   TabsGroupState createState() => TabsGroupState();
+
+  @override
+  int get tabCount => controller.length;
 }
 
 class TabsGroupState extends State<TabsGroup> {
@@ -149,6 +157,7 @@ class TabsGroupState extends State<TabsGroup> {
     return TabGroupProvider(
       controller: widget.controller,
       child: TabAcceptRegion(
+        mainController: widget.controller.mainController,
         original: widget,
         onReplace: (layout) {
           ReplaceListener.of(context).requestReplace(layout);
@@ -189,7 +198,7 @@ class TabsGroupState extends State<TabsGroup> {
         child: Draggable<Tab>(
           data: tab,
           childWhenDragging: Container(),
-          maxSimultaneousDrags: widget.controller.length > 1 ? 1 : 0,
+          maxSimultaneousDrags: widget.controller.allowDrag ? 1 : 0,
           child: LayoutBuilder(builder: (context, constraints) {
             lastConstraints = constraints;
             return DragTarget<Tab>(
