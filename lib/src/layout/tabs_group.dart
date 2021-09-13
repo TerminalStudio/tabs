@@ -189,6 +189,7 @@ class TabsGroupState extends State<TabsGroup> {
         child: Draggable<Tab>(
           data: tab,
           childWhenDragging: Container(),
+          maxSimultaneousDrags: widget.controller.length > 1 ? 1 : 0,
           child: LayoutBuilder(builder: (context, constraints) {
             lastConstraints = constraints;
             return DragTarget<Tab>(
