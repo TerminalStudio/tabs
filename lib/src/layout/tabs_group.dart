@@ -80,7 +80,7 @@ class TabGroupController with ChangeNotifier {
     if (_tabs.isEmpty) {
       _activeTabIndex = null;
     } else {
-      _activeTabIndex = _activeTabIndex!.clamp(0, _tabs.length - 1);
+      setActiveTab(_activeTabIndex!.clamp(0, _tabs.length - 1));
     }
 
     notifyListeners();
