@@ -7,6 +7,8 @@ class TabsController with ChangeNotifier {
   TabsLayout? _root;
   TabsLayout? get root => _root;
 
+  int get tabCount => _root?.tabCount ?? 0;
+
   void replaceRoot(TabsLayout? layout) {
     _root = layout;
 
