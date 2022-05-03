@@ -1,85 +1,100 @@
+import 'package:example/tabs/loading_tab.dart';
+import 'package:example/tabs/start_tab.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart' hide Tab;
 import 'package:tabs/tabs.dart';
 
-import 'package:flutter/material.dart' hide Tab, TabController;
-
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const CupertinoApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      home: Home(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<Home> createState() => _HomeState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  var count = 0;
-  final tabs = TabsController();
-  final group = TabGroupController();
+class _HomeState extends State<Home> {
+  final _document = TabsDocument();
+
+  var _tabIndex = 0;
+
+  final destinations = const [
+    NavigationRailDestination(
+      icon: Icon(Icons.home),
+      selectedIcon: Icon(Icons.home),
+      label: Text('Home'),
+    ),
+    NavigationRailDestination(
+      icon: Icon(Icons.search),
+      selectedIcon: Icon(Icons.search),
+      label: Text('Search'),
+    ),
+    NavigationRailDestination(
+      icon: Icon(Icons.settings),
+      selectedIcon: Icon(Icons.settings),
+      label: Text('Settings'),
+    ),
+  ];
 
   @override
   void initState() {
-    final group = TabsGroup(controller: this.group);
-
-    tabs.replaceRoot(group);
-
     super.initState();
+
+    final root = Tabs(
+      children: [
+        StartTab(),
+        Tab(
+          title: Text('vi .zshrc'),
+          content: Center(child: Text('vi .zshrc')),
+        ),
+        LoadingTab(),
+      ],
+    );
+
+    // final root = Tabs();
+
+    _document.setRoot(root);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: TabsView(
-          controller: tabs,
-          actions: [
-            TabsGroupAction(
-              icon: CupertinoIcons.add,
-              onTap: (group) {
-                group.addTab(buildTab(), activate: true);
-              },
-            )
-          ],
+    return Row(
+      children: [
+        Expanded(
+          child: TabsView(
+            _document,
+            actionBuilder: actionsBuilder,
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        group.addTab(buildTab(), activate: true);
-      }),
+      ],
     );
   }
 
-  Tab buildTab() {
-    count++;
-
-    final tab = TabController();
-
-    tab.setContent(
-      Center(
-        child: Text('Window $count'),
+  List<TabsViewAction> actionsBuilder(Tabs tabs) {
+    return [
+      TabsViewAction(
+        icon: CupertinoIcons.add,
+        onPressed: () {
+          final tab = StartTab();
+          tabs.add(tab);
+          tab.activate();
+        },
       ),
-    );
-
-    return Tab(
-      controller: tab,
-      title: 'Window $count',
-    );
+    ];
   }
 }

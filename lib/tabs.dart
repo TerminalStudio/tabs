@@ -1,8 +1,7 @@
-library tabs;
+export 'src/model/tab.dart';
+export 'src/model/layout.dart';
+export 'src/model/document.dart';
+export 'src/model/tab.dart';
+export 'src/model/tabs.dart';
 
-export 'src/tab.dart';
-export 'src/tabs_view.dart';
-
-export 'src/layout/tabs_layout.dart';
-export 'src/layout/tabs_group.dart';
-export 'src/layout/tabs_group_action.dart';
+export 'src/ui/tabs_view.dart';
