@@ -1,6 +1,6 @@
 name: tabs
 description: Flexible window library built for TerminalStudio.
-version: 0.0.1
+version: 0.0.1-pre
 homepage: https://github.com/TerminalStudio/tabs
 
 environment:
