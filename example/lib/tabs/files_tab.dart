@@ -1,10 +1,8 @@
-import 'package:cupertino_lists/cupertino_lists.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart' hide Tab;
+import 'package:flutter/material.dart';
 import 'package:flutter_fancy_tree_view/flutter_fancy_tree_view.dart';
 import 'package:tabs/tabs.dart';
 
-class FilesTab extends Tab {
+class FilesTab extends TabItem {
   FilesTab() {
     title.value = const Text('Browse Files');
     content.value = FilesTabWidget(this);

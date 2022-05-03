@@ -1,16 +1,16 @@
 import 'package:flutter/widgets.dart';
 import 'package:tabs/src/model/document.dart';
-import 'package:tabs/src/model/tab.dart';
+import 'package:tabs/src/model/tab_item.dart';
 import 'package:tabs/src/model/tabs.dart';
 
 class TabScope extends InheritedWidget {
   const TabScope(this.tab, {Key? key, required Widget child})
       : super(key: key, child: child);
 
-  static Tab? of(BuildContext context) =>
+  static TabItem? of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<TabScope>()?.tab;
 
-  final Tab tab;
+  final TabItem tab;
 
   @override
   bool updateShouldNotify(covariant TabScope oldWidget) {

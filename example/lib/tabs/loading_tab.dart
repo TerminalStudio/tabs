@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:example/tabs/files_tab.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart' hide Tab;
+import 'package:flutter/material.dart';
 import 'package:tabs/tabs.dart';
 
-class LoadingTab extends Tab {
+class LoadingTab extends TabItem {
   LoadingTab() {
     title.value = const Text('Loading...');
     content.value = LoadingTabWidget(this);

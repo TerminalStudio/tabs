@@ -3,20 +3,20 @@
 import 'package:tabs/src/model/container.dart';
 import 'package:tabs/tabs.dart';
 
-class Tabs extends TabsContainer<Tab> {
-  Tabs({List<Tab>? children}) : super(children) {
+class Tabs extends TabsContainer<TabItem> {
+  Tabs({List<TabItem>? children}) : super(children) {
     if (children != null) {
       _activeTab = children.first;
     }
   }
 
-  Tab? _activeTab;
+  TabItem? _activeTab;
 
-  Tab? get activeTab => _activeTab;
+  TabItem? get activeTab => _activeTab;
 
-  final _activeHistory = <Tab>[];
+  final _activeHistory = <TabItem>[];
 
-  Tab? _findLastActiveTab() {
+  TabItem? _findLastActiveTab() {
     if (_activeHistory.isEmpty) {
       return null;
     }
@@ -32,7 +32,7 @@ class Tabs extends TabsContainer<Tab> {
   }
 
   @override
-  void add(Tab node) {
+  void add(TabItem node) {
     super.add(node);
 
     if (activeTab == null) {
@@ -40,7 +40,7 @@ class Tabs extends TabsContainer<Tab> {
     }
   }
 
-  void activate(Tab? tab) {
+  void activate(TabItem? tab) {
     if (_activeTab == tab) {
       return;
     }
@@ -53,7 +53,7 @@ class Tabs extends TabsContainer<Tab> {
   }
 
   @override
-  bool remove(Tab tab) {
+  bool remove(TabItem tab) {
     if (!super.remove(tab)) {
       return false;
     }

@@ -1,9 +1,6 @@
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart' hide Tab;
-import 'package:tabs/src/model/layout.dart';
-import 'package:tabs/src/model/tab.dart';
-import 'package:tabs/src/model/tabs.dart';
+import 'package:flutter/material.dart';
 import 'package:tabs/src/ui/drop_region.dart';
 import 'package:tabs/src/ui/scope.dart';
 import 'package:tabs/src/ui/utils.dart';
@@ -77,7 +74,7 @@ class _TabGroupState extends State<TabGroup> {
     return child;
   }
 
-  void _onDropTop(Tab incomingTab) {
+  void _onDropTop(TabItem incomingTab) {
     final parent = widget.tabs.parent;
 
     if (parent == null) return;
@@ -100,7 +97,7 @@ class _TabGroupState extends State<TabGroup> {
     newTabGroup.add(incomingTab);
   }
 
-  void _onDropBottom(Tab incomingTab) {
+  void _onDropBottom(TabItem incomingTab) {
     final parent = widget.tabs.parent;
 
     if (parent == null) return;
@@ -123,7 +120,7 @@ class _TabGroupState extends State<TabGroup> {
     newTabGroup.add(incomingTab);
   }
 
-  void _onDropLeft(Tab incomingTab) {
+  void _onDropLeft(TabItem incomingTab) {
     final parent = widget.tabs.parent;
     if (parent == null) return;
 
@@ -145,7 +142,7 @@ class _TabGroupState extends State<TabGroup> {
     newTabGroup.add(incomingTab);
   }
 
-  void _onDropRight(Tab incomingTab) {
+  void _onDropRight(TabItem incomingTab) {
     final parent = widget.tabs.parent;
     if (parent == null) return;
 
@@ -227,7 +224,7 @@ class _TabGroupState extends State<TabGroup> {
     );
   }
 
-  Widget _buildTabTile(Tab tab) {
+  Widget _buildTabTile(TabItem tab) {
     final activeTab = widget.tabs.activeTab;
 
     final tabTile = _TabTile(
@@ -242,7 +239,7 @@ class _TabGroupState extends State<TabGroup> {
 
     Widget child = LayoutBuilder(
       builder: (context, constraints) {
-        return Draggable<Tab>(
+        return Draggable<TabItem>(
           data: tab,
           feedback: SizedBox(
             width: constraints.maxWidth,
@@ -264,7 +261,7 @@ class _TabGroupState extends State<TabGroup> {
       child: child,
     );
 
-    return DragTarget<Tab>(
+    return DragTarget<TabItem>(
       builder: (context, data, _) {
         return child;
       },
@@ -317,7 +314,7 @@ class _TabTile extends StatefulWidget {
     this.focused = false,
   }) : super(key: key);
 
-  final Tab tab;
+  final TabItem tab;
 
   final bool active;
 

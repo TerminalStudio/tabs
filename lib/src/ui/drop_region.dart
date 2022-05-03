@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart' hide Tab;
-import 'package:tabs/src/model/tab.dart';
+import 'package:flutter/material.dart';
+import 'package:tabs/src/model/tab_item.dart';
 
-typedef TabDropHandler = void Function(Tab tab);
+typedef TabDropHandler = void Function(TabItem tab);
 
-typedef TabWillDropHandler = bool Function(Tab? tab);
+typedef TabWillDropHandler = bool Function(TabItem? tab);
 
 class TabDropRegion extends StatelessWidget {
   const TabDropRegion({
@@ -132,7 +132,7 @@ class _TabDropAreaState extends State<TabDropArea> {
           right: widget.right,
           top: widget.top,
           bottom: widget.bottom,
-          child: DragTarget<Tab>(
+          child: DragTarget<TabItem>(
             builder: (context, accepted, rejected) => Container(),
             onAccept: (val) {
               setState(() => isAccepting = false);

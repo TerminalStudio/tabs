@@ -1,7 +1,7 @@
 import 'package:example/tabs/loading_tab.dart';
 import 'package:example/tabs/start_tab.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart' hide Tab;
+import 'package:flutter/material.dart';
 import 'package:tabs/tabs.dart';
 
 void main() {
@@ -31,8 +31,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final _document = TabsDocument();
 
-  var _tabIndex = 0;
-
   final destinations = const [
     NavigationRailDestination(
       icon: Icon(Icons.home),
@@ -58,9 +56,9 @@ class _HomeState extends State<Home> {
     final root = Tabs(
       children: [
         StartTab(),
-        Tab(
-          title: Text('vi .zshrc'),
-          content: Center(child: Text('vi .zshrc')),
+        TabItem(
+          title: const Text('vi .zshrc'),
+          content: const Center(child: Text('vi .zshrc')),
         ),
         LoadingTab(),
       ],

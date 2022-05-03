@@ -4,7 +4,7 @@ import 'package:example/tabs/loading_tab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tabs/tabs.dart';
 
-class StartTab extends Tab {
+class StartTab extends TabItem {
   StartTab() {
     title.value = const Text('Get Started');
     content.value = StartTabWidget(this);
@@ -82,7 +82,7 @@ class StartTabWidgetState extends State<StartTabWidget> {
                 newTab.activate();
               },
             ),
-            Draggable<Tab>(
+            Draggable<TabItem>(
               data: draggedTab,
               feedback: Container(
                 color: CupertinoColors.systemBlue.withAlpha(32),

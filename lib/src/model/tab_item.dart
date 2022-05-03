@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:tabs/src/model/node.dart';
 import 'package:tabs/src/model/tabs.dart';
 
-class Tab with TabsNode {
-  Tab({Widget? title, Widget? content}) {
+class TabItem with TabsNode {
+  TabItem({Widget? title, Widget? content}) {
     this.title.value = title;
     this.content.value = content;
   }
@@ -16,7 +16,7 @@ class Tab with TabsNode {
 
   final content = ValueNotifier<Widget?>(null);
 
-  void insertBefore(Tab tab) {
+  void insertBefore(TabItem tab) {
     final parent = this.parent;
 
     if (parent == null) {
@@ -28,7 +28,7 @@ class Tab with TabsNode {
     parent.insert(index, tab);
   }
 
-  void replace(Tab tab) {
+  void replace(TabItem tab) {
     final isActivated = this.isActivated;
 
     if (parent != null) {

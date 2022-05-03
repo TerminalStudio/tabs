@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tabs/tabs.dart';
 
-class DraggedTab extends Tab {
+class DraggedTab extends TabItem {
   DraggedTab() {
     title.value = const Text('Dragged Tab');
     content.value = DraggedTabWidget(this);
