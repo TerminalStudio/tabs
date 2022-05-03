@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:example/tabs/files_tab.dart';
 import 'package:flutter/material.dart';
-import 'package:tabs/tabs.dart';
+import 'package:flutter_tabs/flutter_tabs.dart';
 
 class LoadingTab extends TabItem {
   LoadingTab() {

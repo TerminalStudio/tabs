@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-// import 'package:tabs/tabs.dart';
+// import 'package:flutter_tabs/flutter_tabs.dart';
 
 void main() {
   test('adds one to input values', () {

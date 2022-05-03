@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:tabs/tabs.dart';
+import 'package:flutter_tabs/flutter_tabs.dart';
 
 class DraggedTab extends TabItem {
   DraggedTab() {

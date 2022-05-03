@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:multi_split_view/multi_split_view.dart';
-import 'package:tabs/src/model/document.dart';
-import 'package:tabs/src/model/tabs.dart';
-import 'package:tabs/src/ui/scope.dart';
-import 'package:tabs/src/ui/tabs_area.dart';
+import 'package:flutter_tabs/src/model/document.dart';
+import 'package:flutter_tabs/src/model/tabs.dart';
+import 'package:flutter_tabs/src/ui/scope.dart';
+import 'package:flutter_tabs/src/ui/tabs_area.dart';
 
 class TabsView extends StatefulWidget {
   const TabsView(

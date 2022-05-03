@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:tabs/src/model/document.dart';
-import 'package:tabs/src/model/tab_item.dart';
-import 'package:tabs/src/model/tabs.dart';
+import 'package:flutter_tabs/src/model/document.dart';
+import 'package:flutter_tabs/src/model/tab_item.dart';
+import 'package:flutter_tabs/src/model/tabs.dart';
 
 class TabScope extends InheritedWidget {
   const TabScope(this.tab, {Key? key, required Widget child})

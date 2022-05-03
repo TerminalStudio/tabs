@@ -38,7 +38,7 @@ dependencies:
 
   flutter_fancy_tree_view: ^0.5.1+1
 
-  tabs:
+  flutter_tabs:
     path: ../
 
 dev_dependencies:

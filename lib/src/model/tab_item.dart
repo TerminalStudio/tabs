@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:tabs/src/model/node.dart';
-import 'package:tabs/src/model/tabs.dart';
+import 'package:flutter_tabs/src/model/node.dart';
+import 'package:flutter_tabs/src/model/tabs.dart';
 
 class TabItem with TabsNode {
   TabItem({Widget? title, Widget? content}) {

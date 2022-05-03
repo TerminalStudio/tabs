@@ -2,7 +2,7 @@ import 'package:example/tabs/loading_tab.dart';
 import 'package:example/tabs/start_tab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tabs/tabs.dart';
+import 'package:flutter_tabs/flutter_tabs.dart';
 
 void main() {
   runApp(const MyApp());

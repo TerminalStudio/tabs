@@ -2,7 +2,7 @@ import 'package:cupertino_lists/cupertino_lists.dart';
 import 'package:example/tabs/dragged_tab.dart';
 import 'package:example/tabs/loading_tab.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:tabs/tabs.dart';
+import 'package:flutter_tabs/flutter_tabs.dart';
 
 class StartTab extends TabItem {
   StartTab() {
