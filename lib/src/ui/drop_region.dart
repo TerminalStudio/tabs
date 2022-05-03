@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tabs/src/model/tab_item.dart';
+import 'package:flex_tabs/src/model/tab_item.dart';
 
 typedef TabDropHandler = void Function(TabItem tab);
 

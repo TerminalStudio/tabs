@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_renaming_method_parameters
 
-import 'package:flutter_tabs/src/model/container.dart';
-import 'package:flutter_tabs/flutter_tabs.dart';
+import 'package:flex_tabs/src/model/container.dart';
+import 'package:flex_tabs/flex_tabs.dart';
 
 class Tabs extends TabsContainer<TabItem> {
   Tabs({List<TabItem>? children}) : super(children) {

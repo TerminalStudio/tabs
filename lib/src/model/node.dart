@@ -1,4 +1,4 @@
-import 'package:flutter_tabs/src/model/container.dart';
+import 'package:flex_tabs/src/model/container.dart';
 
 abstract class TabsNode {
   TabsContainer? parent;

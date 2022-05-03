@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_tabs/src/model/node.dart';
-import 'package:flutter_tabs/src/ui/utils.dart';
+import 'package:flex_tabs/src/model/node.dart';
+import 'package:flex_tabs/src/ui/utils.dart';
 
 abstract class TabsContainer<T extends TabsNode> with TabsNode, ChangeNotifier {
   TabsContainer([List<T>? children]) {

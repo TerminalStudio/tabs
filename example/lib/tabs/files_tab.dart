@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fancy_tree_view/flutter_fancy_tree_view.dart';
-import 'package:flutter_tabs/flutter_tabs.dart';
+import 'package:flex_tabs/flex_tabs.dart';
 
 class FilesTab extends TabItem {
   FilesTab() {

@@ -1,4 +1,4 @@
-import 'package:flutter_tabs/src/model/container.dart';
+import 'package:flex_tabs/src/model/container.dart';
 
 class TabsDocument extends TabsContainer<TabsContainer> {
   TabsContainer? get root => children.isNotEmpty ? children.first : null;
