@@ -347,7 +347,7 @@ class _TabTileState extends State<_TabTile> {
                 : theme.backgroundColor,
         border: widget.active
             ? null
-            : Border(top: BorderSide(color: theme.separatorColor)),
+            : Border(top: BorderSide(color: theme.tabSeparatorColor)),
       ),
       child: child,
     );
@@ -478,7 +478,7 @@ class _TabTileSeparator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return VerticalDivider(
-      color: TabsViewTheme.of(context).separatorColor,
+      color: TabsViewTheme.of(context).tabSeparatorColor,
       width: 1,
       thickness: 1,
       // indent: 0,

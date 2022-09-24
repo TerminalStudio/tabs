@@ -65,9 +65,9 @@ class TabsViewState extends State<TabsView> {
 
     Widget child = MultiSplitViewTheme(
       data: MultiSplitViewThemeData(
-        dividerThickness: 4,
+        dividerThickness: TabsViewTheme.of(context).groupDividerThickness,
         dividerPainter: DividerPainter(
-          backgroundColor: CupertinoColors.systemGrey4,
+          backgroundColor: TabsViewTheme.of(context).groupDividerColor,
         ),
       ),
       child: TabsArea(child: root),
