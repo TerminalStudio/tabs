@@ -369,17 +369,13 @@ class _TabTileState extends State<_TabTile> {
   }
 
   Widget _buildCloseButton() {
-    final color = widget.tab.isActivated
-        ? CupertinoColors.systemBlue.resolveFrom(context)
-        : CupertinoColors.systemGrey2.resolveFrom(context);
-
     return AnimatedOpacity(
       opacity: _hover ? 1.0 : 0.0,
       duration: const Duration(milliseconds: 100),
       child: Padding(
         padding: const EdgeInsets.all(5),
         child: _TabTileButton(
-          color: color,
+          color: TabsViewTheme.of(context).closeButtonColor,
           icon: const Icon(CupertinoIcons.xmark),
           onPressed: () => widget.tab.detach(),
         ),
@@ -388,7 +384,7 @@ class _TabTileState extends State<_TabTile> {
   }
 
   Widget _buildContent() {
-    final theme = CupertinoTheme.of(context);
+    final theme = TabsViewTheme.of(context);
 
     Widget child = ValueListenableBuilder<Widget?>(
       valueListenable: widget.tab.title,
@@ -399,10 +395,8 @@ class _TabTileState extends State<_TabTile> {
 
     child = Center(
       child: DefaultTextStyle(
-        style: theme.textTheme.tabLabelTextStyle.copyWith(
-          color: widget.active
-              ? theme.primaryColor
-              : theme.textTheme.textStyle.color,
+        style: TextStyle(
+          color: theme.labelColor,
           fontSize: 12,
           overflow: TextOverflow.ellipsis,
         ),
