@@ -1,3 +1,6 @@
+## 0.0.8-pre
+* Use AnimatedContainer
+
 ## 0.0.7-pre
 * More theming options
 * Update example
