@@ -1,3 +1,4 @@
+import 'package:example/tabs/counter_tab.dart';
 import 'package:example/tabs/loading_tab.dart';
 import 'package:example/tabs/start_tab.dart';
 import 'package:flutter/cupertino.dart';
@@ -61,6 +62,7 @@ class _HomeState extends State<Home> {
           content: const Center(child: Text('vi .zshrc')),
         ),
         LoadingTab(),
+        CounterTab(),
       ],
     );
 
