@@ -1,3 +1,5 @@
+import 'package:flex_tabs/src/ui/theme.dart';
+import 'package:flex_tabs/src/ui/theme_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:multi_split_view/multi_split_view.dart';
 import 'package:flex_tabs/src/model/document.dart';
@@ -8,11 +10,14 @@ import 'package:flex_tabs/src/ui/tabs_area.dart';
 class TabsView extends StatefulWidget {
   const TabsView(
     this.document, {
-    Key? key,
+    super.key,
+    this.theme,
     this.actionBuilder,
-  }) : super(key: key);
+  });
 
   final TabsDocument document;
+
+  final TabsViewThemeData? theme;
 
   final TabsViewActionBuilder? actionBuilder;
 
@@ -67,6 +72,13 @@ class TabsViewState extends State<TabsView> {
       ),
       child: TabsArea(child: root),
     );
+
+    if (widget.theme != null) {
+      child = TabsViewTheme(
+        data: widget.theme!,
+        child: child,
+      );
+    }
 
     return TabsDocumentScope(widget.document, child: child);
   }

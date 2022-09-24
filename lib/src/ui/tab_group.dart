@@ -1,8 +1,8 @@
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
+import 'package:flex_tabs/src/ui/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flex_tabs/src/ui/drop_region.dart';
-import 'package:flex_tabs/src/ui/scope.dart';
 import 'package:flex_tabs/src/ui/utils.dart';
 import 'package:flex_tabs/flex_tabs.dart';
 
@@ -167,7 +167,7 @@ class _TabGroupState extends State<TabGroup> {
   Container _buildTabBar() {
     return Container(
       height: kTabGroupHeight,
-      color: CupertinoTheme.of(context).scaffoldBackgroundColor,
+      color: TabsViewTheme.of(context).backgroundColor,
       child: Row(
         children: [
           Expanded(
@@ -311,14 +311,11 @@ class _TabTile extends StatefulWidget {
     Key? key,
     required this.tab,
     this.active = false,
-    this.focused = false,
   }) : super(key: key);
 
   final TabItem tab;
 
   final bool active;
-
-  final bool focused;
 
   @override
   State<_TabTile> createState() => _TabTileState();
@@ -329,7 +326,7 @@ class _TabTileState extends State<_TabTile> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = CupertinoTheme.of(context);
+    final theme = TabsViewTheme.of(context);
 
     Widget child = Row(
       mainAxisSize: MainAxisSize.max,
@@ -344,16 +341,10 @@ class _TabTileState extends State<_TabTile> {
       constraints: const BoxConstraints.tightFor(height: double.infinity),
       decoration: BoxDecoration(
         color: widget.active
-            ? theme.primaryColor.withAlpha(36)
-            : theme.scaffoldBackgroundColor,
-        border: Border(
-          right: BorderSide(
-            color: widget.active
-                ? theme.primaryColor.withAlpha(36)
-                : theme.scaffoldBackgroundColor,
-            width: 0.0,
-          ),
-        ),
+            ? theme.selectedBackgroundColor
+            : _hover
+                ? theme.hoverBackgroundColor
+                : theme.backgroundColor,
       ),
       child: child,
     );
@@ -490,11 +481,9 @@ class _TabTileSeparator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return VerticalDivider(
-      color: CupertinoColors.systemGrey5.resolveFrom(context),
+      color: TabsViewTheme.of(context).separatorColor,
       width: 1,
-      thickness: 0,
-      indent: 7,
-      endIndent: 7,
+      thickness: 1,
       // indent: 0,
       // endIndent: 0,
     );
