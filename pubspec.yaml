@@ -13,7 +13,7 @@ dependencies:
 
   multi_split_view: ^1.13.0
 
-  fading_edge_scrollview: ^2.0.1
+  fading_edge_scrollview: ^3.0.0
 
 dev_dependencies:
   flutter_test:
