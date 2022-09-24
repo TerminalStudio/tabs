@@ -413,6 +413,7 @@ class _TabTileState extends State<_TabTile> {
               ? theme.primaryColor
               : theme.textTheme.textStyle.color,
           fontSize: 12,
+          overflow: TextOverflow.ellipsis,
         ),
         child: child,
       ),
