@@ -30,7 +30,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final _document = TabsDocument();
+  final document = TabsDocument();
+
+  final tabsTheme = const TabsViewThemeData();
 
   final destinations = const [
     NavigationRailDestination(
@@ -68,20 +70,29 @@ class _HomeState extends State<Home> {
 
     // final root = Tabs();
 
-    _document.setRoot(root);
+    document.setRoot(root);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
+        _buildTitlebar(context),
         Expanded(
           child: TabsView(
-            _document,
+            document,
+            theme: tabsTheme,
             actionBuilder: actionsBuilder,
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildTitlebar(BuildContext context) {
+    return Container(
+      height: 28,
+      color: tabsTheme.selectedBackgroundColor,
     );
   }
 
