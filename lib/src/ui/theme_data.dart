@@ -17,7 +17,7 @@ class TabsViewThemeData {
     this.labelColor = const Color.fromARGB(255, 90, 90, 90),
     this.backgroundColor = const Color.fromARGB(255, 222, 223, 222),
     this.hoverBackgroundColor = const Color.fromARGB(255, 209, 210, 209),
-    this.selectedBackgroundColor = const Color.fromARGB(255, 235, 236, 235),
+    this.selectedBackgroundColor = const Color.fromARGB(255, 239, 240, 240),
     this.separatorColor = const Color.fromARGB(255, 204, 205, 204),
     this.closeButtonColor = const Color.fromARGB(255, 110, 110, 110),
   });

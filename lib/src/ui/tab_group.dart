@@ -345,6 +345,9 @@ class _TabTileState extends State<_TabTile> {
             : _hover
                 ? theme.hoverBackgroundColor
                 : theme.backgroundColor,
+        border: widget.active
+            ? null
+            : Border(top: BorderSide(color: theme.separatorColor)),
       ),
       child: child,
     );
