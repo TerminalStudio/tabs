@@ -6,3 +6,5 @@ export 'src/model/tabs.dart';
 
 export 'src/ui/scope.dart';
 export 'src/ui/tabs_view.dart';
+export 'src/ui/theme.dart';
+export 'src/ui/theme_data.dart';

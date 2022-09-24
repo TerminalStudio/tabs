@@ -1,3 +1,6 @@
+## 0.0.6-pre
+* Export theme
+
 ## 0.0.5-pre
 * Top border
 
