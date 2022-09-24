@@ -1,3 +1,7 @@
+## 0.0.7-pre
+* More theming options
+* Update example
+
 ## 0.0.6-pre
 * Export theme
 
