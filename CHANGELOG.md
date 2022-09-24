@@ -1,3 +1,6 @@
+## 0.0.9-pre
+* Use AnimatedContainer on hover only
+
 ## 0.0.8-pre
 * Use AnimatedContainer
 

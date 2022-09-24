@@ -1,6 +1,6 @@
 name: flex_tabs
 description: Flexible window library built for TerminalStudio.
-version: 0.0.8-pre
+version: 0.0.9-pre
 homepage: https://github.com/TerminalStudio/tabs
 
 environment:

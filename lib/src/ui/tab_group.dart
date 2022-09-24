@@ -338,7 +338,8 @@ class _TabTileState extends State<_TabTile> {
     );
 
     child = AnimatedContainer(
-      duration: const Duration(milliseconds: 100),
+      duration:
+          widget.active ? Duration.zero : const Duration(milliseconds: 100),
       constraints: const BoxConstraints.tightFor(height: double.infinity),
       decoration: BoxDecoration(
         color: widget.active
