@@ -1,3 +1,6 @@
+## 0.0.10-pre
+* Top border on action button
+
 ## 0.0.9-pre
 * Use AnimatedContainer on hover only
 

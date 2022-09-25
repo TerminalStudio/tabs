@@ -460,15 +460,22 @@ class _TabActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 1,
-      child: CupertinoButton(
-        child: Icon(
-          icon,
-          size: 18,
-          color: CupertinoColors.systemGrey.resolveFrom(context),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(color: TabsViewTheme.of(context).tabSeparatorColor),
+          ),
         ),
-        padding: const EdgeInsets.all(0),
-        minSize: 0,
-        onPressed: onPressed,
+        child: CupertinoButton(
+          child: Icon(
+            icon,
+            size: 18,
+            color: CupertinoColors.systemGrey.resolveFrom(context),
+          ),
+          padding: const EdgeInsets.all(0),
+          minSize: 0,
+          onPressed: onPressed,
+        ),
       ),
     );
   }
