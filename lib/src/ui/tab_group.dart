@@ -50,7 +50,10 @@ class _TabGroupState extends State<TabGroup> {
     Widget child = Column(
       children: [
         _buildTabBar(),
-        const Divider(height: 1),
+        Divider(
+          height: 1,
+          color: TabsViewTheme.of(context).tabSeparatorColor,
+        ),
         Expanded(
           child: _buildTabContent(),
         ),
