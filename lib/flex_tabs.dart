@@ -1,6 +1,7 @@
+export 'src/model/container.dart';
 export 'src/model/document.dart';
 export 'src/model/layout.dart';
-export 'src/model/tab_item.dart';
+export 'src/model/node.dart';
 export 'src/model/tab_item.dart';
 export 'src/model/tabs.dart';
 
