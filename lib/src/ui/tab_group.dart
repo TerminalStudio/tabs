@@ -1,10 +1,14 @@
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
+import 'package:flex_tabs/src/model/layout.dart';
+import 'package:flex_tabs/src/model/tab_item.dart';
+import 'package:flex_tabs/src/model/tabs.dart';
+import 'package:flex_tabs/src/ui/scope.dart';
+import 'package:flex_tabs/src/ui/tabs_view.dart';
 import 'package:flex_tabs/src/ui/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flex_tabs/src/ui/drop_region.dart';
 import 'package:flex_tabs/src/ui/utils.dart';
-import 'package:flex_tabs/flex_tabs.dart';
 
 class TabGroup extends StatefulWidget {
   final Tabs tabs;

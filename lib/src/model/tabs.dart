@@ -1,7 +1,9 @@
 // ignore_for_file: avoid_renaming_method_parameters
 
 import 'package:flex_tabs/src/model/container.dart';
-import 'package:flex_tabs/flex_tabs.dart';
+import 'package:flex_tabs/src/model/document.dart';
+import 'package:flex_tabs/src/model/layout.dart';
+import 'package:flex_tabs/src/model/tab_item.dart';
 
 class Tabs extends TabsContainer<TabItem> {
   Tabs({List<TabItem>? children}) : super(children) {

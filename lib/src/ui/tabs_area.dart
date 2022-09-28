@@ -1,9 +1,10 @@
+import 'package:flex_tabs/src/model/layout.dart';
+import 'package:flex_tabs/src/model/tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:multi_split_view/multi_split_view.dart';
 import 'package:flex_tabs/src/model/container.dart';
 import 'package:flex_tabs/src/ui/tab_group.dart';
-import 'package:flex_tabs/flex_tabs.dart';
 
 class TabsArea extends StatefulWidget {
   final TabsContainer child;
