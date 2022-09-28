@@ -1,3 +1,7 @@
+## 0.1.0-pre
+* Export more files
+* Set divider color
+
 ## 0.0.10-pre
 * Top border on action button
 
