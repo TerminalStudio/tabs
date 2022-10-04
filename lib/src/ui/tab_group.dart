@@ -309,6 +309,16 @@ class _TabGroupState extends State<TabGroup> {
       },
     );
 
+    child = Focus(
+      child: child,
+      canRequestFocus: false,
+      onFocusChange: (hasFocus) {
+        if (hasFocus) {
+          TabsDocumentScope.of(context)?.focusedTab.value = activeTab;
+        }
+      },
+    );
+
     return TabScope(activeTab, child: child);
   }
 }

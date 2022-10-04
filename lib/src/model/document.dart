@@ -1,4 +1,6 @@
 import 'package:flex_tabs/src/model/container.dart';
+import 'package:flex_tabs/src/model/tab_item.dart';
+import 'package:flutter/widgets.dart';
 
 class TabsDocument extends TabsContainer<TabsContainer> {
   TabsContainer? get root => children.isNotEmpty ? children.first : null;
@@ -9,4 +11,6 @@ class TabsDocument extends TabsContainer<TabsContainer> {
       add(root);
     }
   }
+
+  final focusedTab = ValueNotifier<TabItem?>(null);
 }

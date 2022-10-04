@@ -1,3 +1,6 @@
+## 0.1.1-pre
+* Add `focusedTab` to `TabsDocument`
+
 ## 0.1.0-pre
 * Export more files
 * Set divider color
