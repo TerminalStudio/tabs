@@ -1,3 +1,6 @@
+## 0.1.2-pre
+* Add thickness
+
 ## 0.1.1-pre
 * Add `focusedTab` to `TabsDocument`
 

@@ -56,6 +56,7 @@ class _TabGroupState extends State<TabGroup> {
         _buildTabBar(),
         Divider(
           height: 1,
+          thickness: 1,
           color: TabsViewTheme.of(context).tabSeparatorColor,
         ),
         Expanded(
