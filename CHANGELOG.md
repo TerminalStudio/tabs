@@ -1,3 +1,7 @@
+## 0.2.0-pre
+* More docs.
+* Tab lifecycle.
+
 ## 0.1.2-pre
 * Add thickness
 
