@@ -264,7 +264,7 @@ class _TabGroupState extends State<TabGroup> {
 
     child = GestureDetector(
       onTap: () {
-        widget.tabs.activate(tab);
+        tab.activate();
       },
       child: child,
     );
@@ -315,7 +315,7 @@ class _TabGroupState extends State<TabGroup> {
       canRequestFocus: false,
       onFocusChange: (hasFocus) {
         if (hasFocus) {
-          TabsDocumentScope.of(context)?.focusedTab.value = activeTab;
+          activeTab.activate();
         }
       },
     );
@@ -400,7 +400,7 @@ class _TabTileState extends State<_TabTile> {
         child: _TabTileButton(
           color: TabsViewTheme.of(context).closeButtonColor,
           icon: const Icon(CupertinoIcons.xmark),
-          onPressed: () => widget.tab.detach(),
+          onPressed: () => widget.tab.dispose(),
         ),
       ),
     );

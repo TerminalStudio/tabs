@@ -23,6 +23,7 @@ abstract class TabsLayout extends TabsContainer<TabsContainer> {
   }
 }
 
+/// A [TabsLayout] that arranges its children horizontally.
 class TabsRow extends TabsLayout {
   TabsRow({List<TabsContainer>? children}) : super(children);
 
@@ -30,6 +31,7 @@ class TabsRow extends TabsLayout {
   final direction = Axis.horizontal;
 }
 
+/// A [TabsLayout] that arranges its children vertically.
 class TabsColumn extends TabsLayout {
   TabsColumn({List<TabsContainer>? children}) : super(children);
 

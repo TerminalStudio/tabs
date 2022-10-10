@@ -1,7 +1,15 @@
+import 'package:flex_tabs/src/model/tab_item.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flex_tabs/src/model/node.dart';
 import 'package:flex_tabs/src/ui/utils.dart';
 
+/// A container of [TabsNode]s.
+///
+/// For example, when [T] is [TabsContainer], this class represents a layout
+/// that can contain other tab groups.
+///
+/// When [T] is [TabItem], this class represents a tab group that can contain
+/// other tab.
 abstract class TabsContainer<T extends TabsNode> with TabsNode, ChangeNotifier {
   TabsContainer([List<T>? children]) {
     if (children != null) {
@@ -23,6 +31,10 @@ abstract class TabsContainer<T extends TabsNode> with TabsNode, ChangeNotifier {
   void add(T node) {
     if (_children.contains(node)) {
       return;
+    }
+
+    if (node.parent != null) {
+      node.parent!.remove(node);
     }
 
     _children.add(node);
@@ -97,6 +109,7 @@ abstract class TabsContainer<T extends TabsNode> with TabsNode, ChangeNotifier {
     notifyListeners();
   }
 
+  /// Insert [node] at [index].
   void insert(int index, T node) {
     if (_children.contains(node)) {
       return;

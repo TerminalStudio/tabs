@@ -7,8 +7,8 @@ import 'package:flex_tabs/src/model/tab_item.dart';
 
 class Tabs extends TabsContainer<TabItem> {
   Tabs({List<TabItem>? children}) : super(children) {
-    if (children != null) {
-      _activeTab = children.first;
+    for (final child in children ?? []) {
+      add(child);
     }
   }
 
@@ -35,7 +35,13 @@ class Tabs extends TabsContainer<TabItem> {
 
   @override
   void add(TabItem node) {
+    if (node.disposed) {
+      throw StateError('Disposed tab cannot be added to tabs.');
+    }
+
     super.add(node);
+
+    node.didMount();
 
     if (activeTab == null) {
       activate(node);
@@ -43,14 +49,33 @@ class Tabs extends TabsContainer<TabItem> {
   }
 
   void activate(TabItem? tab) {
-    if (_activeTab == tab) {
+    if (!children.contains(tab)) {
       return;
     }
 
-    if (children.contains(tab)) {
+    if (_activeTab != tab) {
+      _activeTab?.didDeactivate();
+
       _activeTab = tab;
+
       _activeHistory.add(tab!);
+
+      tab.didActivate();
+
       notifyListeners();
+    }
+
+    document?.activeTab.value = tab;
+  }
+
+  @override
+  void replace(TabItem oldNode, TabItem newNode) {
+    final isActive = _activeTab == oldNode;
+
+    super.replace(oldNode, newNode);
+
+    if (isActive) {
+      activate(newNode);
     }
   }
 
@@ -68,9 +93,11 @@ class Tabs extends TabsContainer<TabItem> {
     }
 
     if (children.isNotEmpty && tab == _activeTab) {
-      _activeTab = _findLastActiveTab() ?? children.last;
-      notifyListeners();
+      final activeTab = _findLastActiveTab() ?? children.last;
+      activate(activeTab);
     }
+
+    tab.didUnmount();
 
     return true;
   }
